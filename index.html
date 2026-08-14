@@ -142,22 +142,6 @@
     .why-card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
     .why-card p{font-size:13.5px;color:var(--text-dim);}
 
-    .about{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-    .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;}
-    .about-copy h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:16px;max-width:640px;}
-    .about-copy p{color:var(--text-dim);font-size:16px;margin-bottom:14px;max-width:560px;}
-    .about-visual{
-      height:260px;border-radius:12px;border:1px solid var(--border);
-      background:
-        radial-gradient(circle at 70% 30%, rgba(21,224,237,0.2), transparent 55%),
-        repeating-linear-gradient(115deg, rgba(21,224,237,0.05) 0 2px, transparent 2px 24px),
-        #060707;
-      position:relative;
-    }
-    .about-visual::after{
-      content:"centa.ltd";position:absolute;bottom:12px;left:14px;font-size:11px;color:var(--text-faint);letter-spacing:1px;
-    }
-
     .team{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
     .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
     .team-card{
@@ -267,7 +251,6 @@
       .nav-links{display:none;}
       .burger{display:block;}
       .why-grid{grid-template-columns:repeat(2,1fr);}
-      .about-grid{grid-template-columns:1fr;}
       .team-grid{grid-template-columns:repeat(2,1fr);}
       .service-grid{grid-template-columns:repeat(2,1fr);}
       .contact-form-wrap{grid-template-columns:1fr;}
@@ -306,7 +289,7 @@
       <li><a href="#">Products</a></li>
       <li><a href="#involved">Community</a></li>
       <li><a href="#why">Why Centa</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#team">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#">Articles</a></li>
     </ul>
@@ -362,19 +345,6 @@
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="about-copy">
-          <h2>About Centa Limited</h2>
-          <p>Centa Limited is a technology company focused on building secure, reliable, and innovative digital products. We combine engineering expertise with a practical understanding of real-world challenges to create solutions that help people, businesses, and communities thrive.</p>
-          <p>Our work spans cybersecurity, software development, web and mobile applications, game development, and technology consulting. We believe great technology should be accessible, dependable, and designed with purpose.</p>
-        </div>
-        <div class="about-visual"></div>
-      </div>
-    </div>
-  </section>
-
   <section class="team" id="team">
     <div class="wrap">
       <h2 class="section-title">Our Team</h2>
@@ -382,27 +352,27 @@
       <div class="team-grid">
         <div class="team-card">
           <div class="team-photo">Your Photo</div>
-          <h3>Alex Morgan</h3>
-          <span class="team-role">CEO & Co-Founder</span>
+          <h3>Yudi Ardata</h3>
+          <span class="team-role">Founder & CEO</span>
           <p>Leads company vision, product direction, and overall strategy.</p>
         </div>
         <div class="team-card">
           <div class="team-photo">Your Photo</div>
-          <h3>Sam Taylor</h3>
-          <span class="team-role">CTO & Co-Founder</span>
+          <h3>Goestaf Nurhidayat</h3>
+          <span class="team-role">Co-Founder</span>
           <p>Oversees engineering, infrastructure, and technical innovation.</p>
         </div>
         <div class="team-card">
           <div class="team-photo">Your Photo</div>
-          <h3>Jamie Lee</h3>
+          <h3>Ach. Nur Wahyudi</h3>
           <span class="team-role">Head of Design</span>
-          <p>Shapes user experience, branding, and product design across Centa.</p>
+          <p>Brand positioning and growth.</p>
         </div>
         <div class="team-card">
           <div class="team-photo">Your Photo</div>
-          <h3>Riley Chen</h3>
-          <span class="team-role">Lead Security Engineer</span>
-          <p>Focuses on cybersecurity, penetration testing, and secure development.</p>
+          <h3>D. Putri Varizka</h3>
+          <span class="team-role">UI/UX Designer</span>
+          <p>Creates intuitive and engaging interfaces focused on usability and user experience.</p>
         </div>
       </div>
     </div>
@@ -555,7 +525,6 @@
       <div class="footer-col">
         <h4>About us</h4>
         <ul>
-          <li><a href="#about">About</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#">Partners</a></li>
           <li><a href="#">Contact</a></li>
