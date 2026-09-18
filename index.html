@@ -175,21 +175,157 @@
     .service-link svg{width:14px;height:14px;transition:transform .2s ease;}
     .service-card:hover .service-link svg{transform:translateX(2px);}
 
-    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .products{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg);}
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
     .product-card{
-      border:1px solid var(--border);background:var(--panel);border-radius:12px;overflow:hidden;
-      display:flex;flex-direction:column;transition:border-color .25s ease,transform .25s ease;
+      border:1px solid var(--border);background:var(--panel);border-radius:12px;
+      overflow:hidden;display:flex;flex-direction:column;
+      transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
     }
-    .product-card:hover{border-color:var(--accent-line);transform:translateY(-3px);}
-    .product-img{
-      width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#0f1111,#0a0c0c);
+    .product-card:hover{
+      border-color:var(--accent-line);
+      transform:translateY(-4px);
+      box-shadow:0 12px 40px rgba(21,224,237,0.08);
+    }
+    .product-photo{
+      position:relative;
+      width:100%;
+      aspect-ratio: 16 / 10;
+      background:
+        linear-gradient(135deg, rgba(21,224,237,0.06), rgba(0,0,0,0) 60%),
+        linear-gradient(135deg, #0f1111, #0a0c0c);
+      border-bottom:1px solid var(--border);
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .product-photo::after{
+      content:"";
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(21,224,237,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21,224,237,0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events:none;
+    }
+    .product-photo img{
+      position:absolute;inset:0;
+      width:100%;height:100%;object-fit:cover;
+      z-index:1;
+      transition:transform .4s ease;
+    }
+    .product-card:hover .product-photo img{transform:scale(1.04);}
+    .product-photo-label{
+      position:relative;z-index:0;
+      color:var(--text-faint);
+      font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+    }
+    .product-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex-grow:1;}
+    .product-tag{
+      font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+      color:var(--accent);opacity:.85;
+    }
+    .product-body h3{font-size:18px;font-weight:700;line-height:1.25;}
+    .product-body p{font-size:13.5px;color:var(--text-dim);flex-grow:1;}
+    .product-footer{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-top:6px;padding-top:14px;border-top:1px solid var(--border);
+    }
+    .product-price{font-size:15px;font-weight:800;color:var(--text);}
+    .product-price small{font-size:11px;font-weight:600;color:var(--text-faint);display:block;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px;}
+    .product-cta{
+      font-size:13px;font-weight:700;color:var(--accent);
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .product-cta svg{width:13px;height:13px;transition:transform .2s ease;}
+    .product-card:hover .product-cta svg{transform:translateX(2px);}
+
+    .product-page{display:none;}
+    .product-page.active{display:block;}
+    .product-hero{
+      padding:80px 0 60px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(21,224,237,0.03), transparent 70%);
+    }
+    .product-back{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:13px;font-weight:600;color:var(--text-dim);
+      margin-bottom:28px;
+      transition:color .2s ease;
+    }
+    .product-back:hover{color:var(--accent);}
+    .product-back svg{width:14px;height:14px;}
+    .product-detail{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:start;
+    }
+    .product-detail-photo{
+      position:relative;
+      width:100%;
+      aspect-ratio: 4 / 3;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(21,224,237,0.06), rgba(0,0,0,0) 60%),
+        linear-gradient(135deg, #0f1111, #0a0c0c);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .product-detail-photo::after{
+      content:"";
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(21,224,237,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21,224,237,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events:none;
+    }
+    .product-detail-photo img{
+      position:absolute;inset:0;
+      width:100%;height:100%;object-fit:cover;
+      z-index:1;
+    }
+    .product-detail-photo .product-photo-label{z-index:0;}
+    .product-detail-info .eyebrow{margin-bottom:12px;}
+    .product-detail-info h1{
+      font-size:clamp(28px,4vw,42px);
+      font-weight:800;
+      letter-spacing:-1px;
+      line-height:1.1;
+      margin-bottom:18px;
+    }
+    .product-detail-info .product-price{
+      font-size:24px;
+      margin-bottom:22px;
+      padding-bottom:22px;
       border-bottom:1px solid var(--border);
     }
-    .product-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
-    .product-body h3{font-size:17px;font-weight:700;}
-    .product-body p{font-size:13.5px;color:var(--text-dim);flex:1;}
-    .product-price{font-size:14px;color:var(--accent);font-weight:700;}
-    .product-empty{color:var(--text-dim);font-size:14px;}
+    .product-detail-info .product-price small{font-size:11px;}
+    .product-detail-info > p{
+      font-size:15px;
+      color:var(--text-dim);
+      line-height:1.7;
+      margin-bottom:26px;
+    }
+    .product-features{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px 24px;
+      margin-bottom:32px;
+    }
+    .product-features li{
+      font-size:13.5px;
+      color:var(--text-dim);
+      display:flex;
+      align-items:flex-start;
+      gap:9px;
+      line-height:1.5;
+    }
+    .product-features li svg{
+      width:15px;height:15px;
+      color:var(--accent);
+      flex-shrink:0;
+      margin-top:3px;
+    }
+    .product-actions{display:flex;gap:12px;flex-wrap:wrap;}
 
     .contact-form-wrap{display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--border);background:var(--panel);border-radius:14px;overflow:hidden;margin-top:28px;}
     .contact-form{padding:30px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:20px;}
@@ -271,7 +407,8 @@
       .why-grid{grid-template-columns:repeat(2,1fr);}
       .team-grid{grid-template-columns:1fr;max-width:400px;}
       .service-grid{grid-template-columns:repeat(2,1fr);}
-      .products-grid{grid-template-columns:repeat(2,1fr);}
+      .product-grid{grid-template-columns:repeat(2,1fr);}
+      .product-detail{grid-template-columns:1fr;gap:32px;}
       .contact-form-wrap{grid-template-columns:1fr;}
       .contact-form{border-right:0;border-bottom:1px solid var(--border);}
       .involve-top{grid-template-columns:1fr;}
@@ -281,7 +418,8 @@
     @media (max-width:560px){
       .why-grid{grid-template-columns:1fr;}
       .service-grid{grid-template-columns:1fr;}
-      .products-grid{grid-template-columns:1fr;}
+      .product-grid{grid-template-columns:1fr;}
+      .product-features{grid-template-columns:1fr;}
       .footer-top{grid-template-columns:1fr;}
       .hero{padding-top:70px;}
       .support-link{display:none;}
@@ -321,177 +459,334 @@
 
 <main id="top">
 
-  <section class="hero">
-    <h1 class="hero-title"><span id="typed-heading"></span><span class="cursor" id="cursor">|</span></h1>
-    <p class="hero-sub">Cybersecurity, software development, and digital consulting services designed to protect your business and help it grow in the modern world.</p>
-    <div class="hero-ctas">
-      <a href="#services" class="btn">Our Services</a>
-      <a href="#why" class="btn btn-ghost">Why Centa</a>
-    </div>
-  </section>
+  <div id="main-content">
 
-  <section class="why" id="why">
-    <div class="wrap">
-      <h2 class="section-title">Why Centa?</h2>
-      <p class="section-desc">Built with a focus on innovation, security, and reliability, Centa develops technology designed to solve real-world challenges, empowering developers, businesses, and communities with solutions built for today and ready for tomorrow.</p>
-      <div class="why-grid">
-        <div class="why-card">
-          <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
-          <h3>Innovative</h3>
-          <p>Modern technology built to create meaningful solutions.</p>
-        </div>
-        <div class="why-card">
-          <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
-          <h3>Reliable</h3>
-          <p>Dependable products designed for consistent everyday use.</p>
-        </div>
-        <div class="why-card">
-          <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-          <h3>User-focused</h3>
-          <p>Security is considered throughout every product we build.</p>
-        </div>
-        <div class="why-card">
-          <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 18a5 5 0 0 1-1-9.9A6 6 0 0 1 17.5 8 4.5 4.5 0 0 1 17 17H7Z"/></svg>
-          <h3>Scalable</h3>
-          <p>Solutions designed to grow with people, teams, and businesses.</p>
-        </div>
-        <div class="why-card">
-          <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg>
-          <h3>User-focused</h3>
-          <p>Simple, practical experiences designed around real users.</p>
+    <section class="hero">
+      <h1 class="hero-title"><span id="typed-heading"></span><span class="cursor" id="cursor">|</span></h1>
+      <p class="hero-sub">Cybersecurity, software development, and digital consulting services designed to protect your business and help it grow in the modern world.</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn">Our Services</a>
+        <a href="#why" class="btn btn-ghost">Why Centa</a>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="wrap">
+        <h2 class="section-title">Our Products</h2>
+        <p class="section-desc">Ready-to-use products built by Centa Limited. From security tools to AI-powered solutions, engineered for professionals who need reliability and performance.</p>
+
+        <div class="product-grid">
+
+          <a href="#product-rat" class="product-card">
+            <div class="product-photo">
+              <span class="product-photo-label">1.jpg</span>
+              <img src="1.jpg" alt="RAT Product" onerror="this.style.display='none'">
+            </div>
+            <div class="product-body">
+              <span class="product-tag">Security Tool</span>
+              <h3>RAT (Remote Access Tool)</h3>
+              <p>Lightweight remote administration tool for IT professionals. Manage, monitor, and control multiple devices from one encrypted dashboard.</p>
+              <div class="product-footer">
+                <div class="product-price"><small>Starting from</small>Rp 250.000</div>
+                <span class="product-cta">View detail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#product-nfc" class="product-card">
+            <div class="product-photo">
+              <span class="product-photo-label">2.jpg</span>
+              <img src="2.jpg" alt="NFC Relay Product" onerror="this.style.display='none'">
+            </div>
+            <div class="product-body">
+              <span class="product-tag">Hardware</span>
+              <h3>NFC Relay</h3>
+              <p>Advanced NFC relay device for authorized security testing and access-control research. Long range, rechargeable, and portable.</p>
+              <div class="product-footer">
+                <div class="product-price"><small>Starting from</small>Rp 1.250.000</div>
+                <span class="product-cta">View detail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#product-ai" class="product-card">
+            <div class="product-photo">
+              <span class="product-photo-label">3.jpg</span>
+              <img src="3.jpg" alt="AI Call Center Product" onerror="this.style.display='none'">
+            </div>
+            <div class="product-body">
+              <span class="product-tag">AI Solution</span>
+              <h3>AI Call Center</h3>
+              <p>Intelligent AI-powered call center that handles customer inquiries, routes calls, and provides 24/7 automated support in multiple languages.</p>
+              <div class="product-footer">
+                <div class="product-price"><small>Starting from</small>Rp 4.500.000</div>
+                <span class="product-cta">View detail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </div>
+          </a>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="team" id="team">
-    <div class="wrap">
-      <h2 class="section-title">Our Team</h2>
-      <p class="section-desc">The people behind Centa Limited. We're designers, engineers, and builders focused on creating technology that matters.</p>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo"><img src="yudiardata.jpg" alt="Yudi Ardata"></div>
-          <h3>Yudi Ardata</h3>
-          <span class="team-role">Founder & CEO</span>
-          <p>Web & App Developer, Cybersecurity Specialist, and Ethical Hacker.</p>
-        </div>
-        <div class="team-card">
-          <div class="team-photo"><img src="goestaf.jpg" alt="Goestaf Nurhidayat"></div>
-          <h3>Goestaf Nurhidayat</h3>
-          <span class="team-role">Co-Founder</span>
-          <p>Oversees engineering, infrastructure, and technical innovation.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <div class="wrap">
-      <h2 class="section-title">Our Service</h2>
-      <p class="section-desc">From cybersecurity to software and digital experiences, Centa provides professional services to help organizations turn ideas into secure, reliable, and scalable technology.</p>
-
-      <div class="service-grid">
-        <div class="service-card">
-          <h3>Cybersecurity Services</h3>
-          <p>Professional security services designed to identify risks, strengthen defenses, and protect critical systems and digital assets.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="service-card">
-          <h3>Penetration Testing</h3>
-          <p>Real-world security testing to uncover vulnerabilities across applications, networks, infrastructure, and digital environments.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="service-card">
-          <h3>Software Development</h3>
-          <p>Custom software engineered around your requirements, with a focus on performance, maintainability, security, and long-term growth.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="service-card">
-          <h3>Web & App Development</h3>
-          <p>Modern websites and mobile applications built to deliver polished experiences across platforms, devices, and business needs.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="service-card">
-          <h3>Game Development</h3>
-          <p>Interactive experiences and games developed with modern technology, from concept and engineering to polished digital products.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="service-card">
-          <h3>Technology Consulting</h3>
-          <p>Technical guidance for architecture, infrastructure, security, development, and digital transformation from idea to deployment.</p>
-          <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="products">
-    <div class="wrap">
-      <div class="eyebrow">Products</div>
-      <h2 class="section-title">Produk Kami</h2>
-      <p class="section-desc">Produk digital yang kami kembangkan untuk membantu pekerjaan dan bisnis Anda.</p>
-      <div id="products-grid" class="products-grid">
-        <p class="product-empty">Memuat produk...</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="involved">
-    <div class="wrap">
-      <h2 class="section-title">Build the future with us</h2>
-      <p class="section-desc">Have a project in mind, need professional cybersecurity, or want to work with Centa? Tell us what you need and our team will get back to you.</p>
-
-      <div class="contact-form-wrap">
-        <form class="contact-form" id="contactForm">
-          <div class="form-field">
-            <label for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" placeholder="e.g. John Smith" autocomplete="name" required>
+    <section class="why" id="why">
+      <div class="wrap">
+        <h2 class="section-title">Why Centa?</h2>
+        <p class="section-desc">Built with a focus on innovation, security, and reliability, Centa develops technology designed to solve real-world challenges, empowering developers, businesses, and communities with solutions built for today and ready for tomorrow.</p>
+        <div class="why-grid">
+          <div class="why-card">
+            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+            <h3>Innovative</h3>
+            <p>Modern technology built to create meaningful solutions.</p>
           </div>
-
-          <div class="form-field">
-            <label for="contact-email">Email address</label>
-            <input id="contact-email" name="email" type="email" placeholder="e.g. name@company.com" autocomplete="email" required>
+          <div class="why-card">
+            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
+            <h3>Reliable</h3>
+            <p>Dependable products designed for consistent everyday use.</p>
           </div>
-
-          <div class="form-field">
-            <label for="contact-service">Service</label>
-            <select id="contact-service" name="service" required>
-              <option value="" selected disabled>Select a service</option>
-              <option>Cybersecurity Services</option>
-              <option>Penetration Testing</option>
-              <option>Software Development</option>
-              <option>Web Development</option>
-              <option>App Development</option>
-              <option>Game Development</option>
-              <option>Technology Consulting</option>
-              <option>Other</option>
-            </select>
+          <div class="why-card">
+            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            <h3>User-focused</h3>
+            <p>Security is considered throughout every product we build.</p>
           </div>
-
-          <div class="form-field">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="7" placeholder="Tell us a little about your project or requirements." required></textarea>
+          <div class="why-card">
+            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 18a5 5 0 0 1-1-9.9A6 6 0 0 1 17.5 8 4.5 4.5 0 0 1 17 17H7Z"/></svg>
+            <h3>Scalable</h3>
+            <p>Solutions designed to grow with people, teams, and businesses.</p>
           </div>
-
-          <button type="submit" class="btn form-submit">Send message</button>
-        </form>
-
-        <div class="contact-side">
-          <div class="contact-side-inner">
-            <h3>Let’s build something that matters.</h3>
-            <p>Whether you need a security assessment, a custom application, a website, a game, or a complete digital solution, our team is ready to help.</p>
-            <div class="contact-side-line"></div>
-            <span class="contact-side-label">Creating products people loved.</span>
+          <div class="why-card">
+            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg>
+            <h3>Trusted</h3>
+            <p>Simple, practical experiences designed around real users.</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="wrap">
+        <h2 class="section-title">Our Team</h2>
+        <p class="section-desc">The people behind Centa Limited. We're designers, engineers, and builders focused on creating technology that matters.</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-photo"><img src="yudiardata.jpg" alt="Yudi Ardata"></div>
+            <h3>Yudi Ardata</h3>
+            <span class="team-role">Founder & CEO</span>
+            <p>Web & App Developer, Cybersecurity Specialist, and Ethical Hacker.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo"><img src="goestaf.jpg" alt="Goestaf Nurhidayat"></div>
+            <h3>Goestaf Nurhidayat</h3>
+            <span class="team-role">Co-Founder</span>
+            <p>Oversees engineering, infrastructure, and technical innovation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <h2 class="section-title">Our Service</h2>
+        <p class="section-desc">From cybersecurity to software and digital experiences, Centa provides professional services to help organizations turn ideas into secure, reliable, and scalable technology.</p>
+
+        <div class="service-grid">
+          <div class="service-card">
+            <h3>Cybersecurity Services</h3>
+            <p>Professional security services designed to identify risks, strengthen defenses, and protect critical systems and digital assets.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+
+          <div class="service-card">
+            <h3>Penetration Testing</h3>
+            <p>Real-world security testing to uncover vulnerabilities across applications, networks, infrastructure, and digital environments.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+
+          <div class="service-card">
+            <h3>Software Development</h3>
+            <p>Custom software engineered around your requirements, with a focus on performance, maintainability, security, and long-term growth.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+
+          <div class="service-card">
+            <h3>Web & App Development</h3>
+            <p>Modern websites and mobile applications built to deliver polished experiences across platforms, devices, and business needs.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+
+          <div class="service-card">
+            <h3>Game Development</h3>
+            <p>Interactive experiences and games developed with modern technology, from concept and engineering to polished digital products.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+
+          <div class="service-card">
+            <h3>Technology Consulting</h3>
+            <p>Technical guidance for architecture, infrastructure, security, development, and digital transformation from idea to deployment.</p>
+            <a href="#involved" class="service-link">Contact us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="involved">
+      <div class="wrap">
+        <h2 class="section-title">Build the future with us</h2>
+        <p class="section-desc">Have a project in mind, need professional cybersecurity, or want to work with Centa? Tell us what you need and our team will get back to you.</p>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="form-field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" placeholder="e.g. John Smith" autocomplete="name" required>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-email">Email address</label>
+              <input id="contact-email" name="email" type="email" placeholder="e.g. name@company.com" autocomplete="email" required>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-service">Service</label>
+              <select id="contact-service" name="service" required>
+                <option value="" selected disabled>Select a service</option>
+                <option>Cybersecurity Services</option>
+                <option>Penetration Testing</option>
+                <option>Software Development</option>
+                <option>Web Development</option>
+                <option>App Development</option>
+                <option>Game Development</option>
+                <option>Technology Consulting</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="7" placeholder="Tell us a little about your project or requirements." required></textarea>
+            </div>
+
+            <button type="submit" class="btn form-submit">Send message</button>
+          </form>
+
+          <div class="contact-side">
+            <div class="contact-side-inner">
+              <h3>Let's build something that matters.</h3>
+              <p>Whether you need a security assessment, a custom application, a website, a game, or a complete digital solution, our team is ready to help.</p>
+              <div class="contact-side-line"></div>
+              <span class="contact-side-label">Creating products people loved.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="product-page" id="page-product-rat" data-route="product-rat">
+    <div class="product-hero">
+      <div class="wrap">
+        <a href="#products" class="product-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
+          Back to products
+        </a>
+        <div class="product-detail">
+          <div class="product-detail-photo">
+            <span class="product-photo-label">1.jpg</span>
+            <img src="1.jpg" alt="RAT Product" onerror="this.style.display='none'">
+          </div>
+          <div class="product-detail-info">
+            <div class="eyebrow">Security Tool</div>
+            <h1>RAT (Remote Access Tool)</h1>
+            <div class="product-price"><small>Price</small>Rp 250.000</div>
+            <p>A lightweight remote administration tool built for IT professionals, sysadmins, and managed service providers. Connect to multiple devices from a single encrypted dashboard, monitor systems, transfer files, and manage endpoints in real time without leaving your seat.</p>
+            <ul class="product-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Real-time remote desktop access</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Secure file transfer &amp; manager</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Multi-device management dashboard</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> System monitoring &amp; alerts</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> AES-256 encrypted communication</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Windows, macOS &amp; Linux support</li>
+            </ul>
+            <div class="product-actions">
+              <a href="https://wa.me/6287867738173?text=Halo%20Centa%20Limited%2C%20saya%20ingin%20order%20produk%20*RAT%20(Remote%20Access%20Tool)*" target="_blank" rel="noopener noreferrer" class="btn">Order via WhatsApp</a>
+              <a href="#involved" class="btn btn-ghost">Ask a question</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <div class="product-page" id="page-product-nfc" data-route="product-nfc">
+    <div class="product-hero">
+      <div class="wrap">
+        <a href="#products" class="product-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
+          Back to products
+        </a>
+        <div class="product-detail">
+          <div class="product-detail-photo">
+            <span class="product-photo-label">2.jpg</span>
+            <img src="2.jpg" alt="NFC Relay Product" onerror="this.style.display='none'">
+          </div>
+          <div class="product-detail-info">
+            <div class="eyebrow">Hardware</div>
+            <h1>NFC Relay</h1>
+            <div class="product-price"><small>Price</small>Rp 1.250.000</div>
+            <p>Advanced NFC relay device built for authorized security testing and access-control research. Extends NFC signal over long range, allowing penetration testers and red teams to evaluate the real-world security of card-based access systems in a controlled, ethical environment.</p>
+            <ul class="product-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Long-range NFC signal extension</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Compatible with most access cards</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Rechargeable battery (8+ hours)</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Compact &amp; portable design</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Built for authorized security audits</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Includes protective carrying case</li>
+            </ul>
+            <div class="product-actions">
+              <a href="https://wa.me/6287867738173?text=Halo%20Centa%20Limited%2C%20saya%20ingin%20order%20produk%20*NFC%20Relay*" target="_blank" rel="noopener noreferrer" class="btn">Order via WhatsApp</a>
+              <a href="#involved" class="btn btn-ghost">Ask a question</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-page" id="page-product-ai" data-route="product-ai">
+    <div class="product-hero">
+      <div class="wrap">
+        <a href="#products" class="product-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
+          Back to products
+        </a>
+        <div class="product-detail">
+          <div class="product-detail-photo">
+            <span class="product-photo-label">3.jpg</span>
+            <img src="3.jpg" alt="AI Call Center Product" onerror="this.style.display='none'">
+          </div>
+          <div class="product-detail-info">
+            <div class="eyebrow">AI Solution</div>
+            <h1>AI Call Center</h1>
+            <div class="product-price"><small>Price</small>Rp 4.500.000</div>
+            <p>Intelligent AI-powered call center solution that handles customer inquiries, routes calls to the right agent, and provides 24/7 automated support in multiple languages. Built to reduce operational cost while keeping your customers happy, powered by modern natural language understanding.</p>
+            <ul class="product-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Natural language understanding</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Multi-language support</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Automatic intelligent call routing</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Real-time analytics dashboard</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> CRM integration ready</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 24/7 automated support</li>
+            </ul>
+            <div class="product-actions">
+              <a href="https://wa.me/6287867738173?text=Halo%20Centa%20Limited%2C%20saya%20ingin%20order%20produk%20*AI%20Call%20Center*" target="_blank" rel="noopener noreferrer" class="btn">Order via WhatsApp</a>
+              <a href="#involved" class="btn btn-ghost">Ask a question</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -519,14 +814,11 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Products</h4>
         <ul>
-          <li><a href="#services">Cybersecurity Services</a></li>
-          <li><a href="#services">Penetration Testing</a></li>
-          <li><a href="#services">Software Development</a></li>
-          <li><a href="#services">Web & App Development</a></li>
-          <li><a href="#services">Game Development</a></li>
-          <li><a href="#services">Technology Consulting</a></li>
+          <li><a href="#product-rat">RAT (Remote Access Tool)</a></li>
+          <li><a href="#product-nfc">NFC Relay</a></li>
+          <li><a href="#product-ai">AI Call Center</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -534,7 +826,7 @@
         <ul>
           <li><a href="#">Articles</a></li>
           <li><a href="#involved">Community</a></li>
-          <li><a href="#products">Products</a></li> 
+          <li><a href="#products">Products</a></li>
           <li><a href="#why">Why Centa</a></li>
           <li><a href="#services">Services</a></li>
         </ul>
@@ -628,55 +920,60 @@
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const name = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
     const service = document.getElementById('contact-service').value;
     const message = document.getElementById('contact-message').value.trim();
-    
+
     const waMessage = `Halo Centa Limited!%0A%0A*Nama:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Layanan:* ${encodeURIComponent(service)}%0A*Pesan:*%0A${encodeURIComponent(message)}`;
-    
+
     const waLink = `https://wa.me/6287867738173?text=${waMessage}`;
-    
+
     window.open(waLink, '_blank');
   });
 
-  function escapeHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, c => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[c]));
-  }
+  const mainContent = document.getElementById('main-content');
+  const productPages = document.querySelectorAll('.product-page');
 
-  async function loadProducts() {
-    const grid = document.getElementById('products-grid');
-    if (!grid) return;
-    try {
-      const res = await fetch('products.json?v=' + Date.now());
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const products = await res.json();
-      if (!Array.isArray(products) || !products.length) {
-        grid.innerHTML = '<p class="product-empty">Belum ada produk.</p>';
-        return;
-      }
-      grid.innerHTML = products.map(p => `
-        <div class="product-card">
-          ${p.image
-            ? `<img class="product-img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy">`
-            : `<div class="product-img"></div>`}
-          <div class="product-body">
-            <h3>${escapeHtml(p.name)}</h3>
-            <p>${escapeHtml(p.desc || '')}</p>
-            ${p.price ? `<div class="product-price">${escapeHtml(p.price)}</div>` : ''}
-            ${p.link ? `<a class="service-link" href="${escapeHtml(p.link)}" target="_blank" rel="noopener">Lihat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>` : ''}
-          </div>
-        </div>
-      `).join('');
-    } catch (e) {
-      grid.innerHTML = '<p class="product-empty">Gagal memuat produk.</p>';
+  function scrollToAnchor(hash) {
+    if (!hash || hash === '#' || hash === '#top') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
+    }
+    const el = document.querySelector(hash);
+    if (el) {
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      });
     }
   }
 
-  loadProducts();
+  function route() {
+    const hash = window.location.hash;
+    let matched = null;
+
+    productPages.forEach(p => {
+      p.classList.remove('active');
+      if (hash === '#' + p.dataset.route) matched = p;
+    });
+
+    if (matched) {
+      mainContent.style.display = 'none';
+      matched.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+      const wasHidden = mainContent.style.display === 'none';
+      mainContent.style.display = '';
+      if (wasHidden) {
+        scrollToAnchor(hash);
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', route);
+  window.addEventListener('load', route);
+  route();
 </script>
 
 </body>
